@@ -20,7 +20,17 @@ greaterThan(QT_MAJOR_VERSION, 4) {
 # Dependency library locations can be customized with:
 #    BOOST_INCLUDE_PATH, BOOST_LIB_PATH, BDB_INCLUDE_PATH,
 #    BDB_LIB_PATH, OPENSSL_INCLUDE_PATH and OPENSSL_LIB_PATH respectively
-
+macx {
+#
+        BOOST_INCLUDE_PATH=/usr/local/opt/boost162/include
+        BOOST_LIB_PATH=/usr/local/opt/boost162/lib
+        BDB_INCLUDE_PATH=/usr/local/opt/berkeley-db@4/include
+        BDB_LIB_PATH=/usr/local/opt/berkeley-db@4/lib
+        OPENSSL_INCLUDE_PATH=/usr/local/opt/openssl@1.1/include
+        OPENSSL_LIB_PATH=/usr/local/opt/openssl@1.1/lib
+        MINIUPNPC_INCLUDE_PATH=/usr/local/opt/miniupnpc/include
+        MINIUPNPC_LIB_PATH=/usr/local/opt/miniupnpc/lib
+        }
 OBJECTS_DIR = build
 MOC_DIR = build
 UI_DIR = build
