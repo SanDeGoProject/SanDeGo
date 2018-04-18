@@ -1,0 +1,9 @@
+Building SanDeGo
+
+See doc/readme-qt.rst for instructions on building SanDeGo QT,
+the intended-for-end-users, nice-graphical-interface, reference
+implementation of SanDeGo.
+
+See doc/build-*.txt for instructions on building sandegod,
+the intended-for-services, no-graphical-interface, reference
+implementation of SanDeGo.
