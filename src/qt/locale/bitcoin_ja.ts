@@ -81,12 +81,12 @@ MIT/X11 ソフトウェア ライセンスの下で配布されています。�
     <message>
         <location line="+11"/>
         <source>Sign a message to prove you own a SanDeGo address</source>
-        <translation>所有権の証明するためのメサッジを署名する。</translation>
+        <translation>所有権を証明するためにメッセージを署名する。</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Sign &amp;Message</source>
-        <translation>メサッジを署名する。</translation>
+        <translation>メッセージを署名する。</translation>
     </message>
     <message>
         <location line="+25"/>
@@ -182,12 +182,12 @@ MIT/X11 ソフトウェア ライセンスの下で配布されています。�
     <message>
         <location line="+33"/>
         <source>Serves to disable the trivial sendmoney when OS account compromised. Provides no real security.</source>
-        <translation>ユーザアカウントはハッキングされたばい、瑣末のsendmoney無効にする。機密保護には効果はない。</translation>
+        <translation>OSアカウントがハッキングされた場合に送金を無効にします。実際のセキュリティは提供されません。</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>For staking only</source>
-        <translation>賭けるのみ</translation>
+        <translation>Stakingのみ</translation>
     </message>
     <message>
         <location filename="../askpassphrasedialog.cpp" line="+35"/>
@@ -237,7 +237,7 @@ MIT/X11 ソフトウェア ライセンスの下で配布されています。�
     <message>
         <location line="+1"/>
         <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR COINS&lt;/b&gt;!</source>
-        <translation>ご注意：暗号化したウォレットのパスワードを忘れたばい、b&gt;すべてのコインを失う&lt;/b&gt;!</translation>
+        <translation>ご注意：暗号化したウォレットのパスワードを忘れた場合、&lt;b&gt;すべてのコインを失います&lt;/b&gt;!</translation>
     </message>
     <message>
         <location line="+0"/>
@@ -620,7 +620,7 @@ MIT/X11 ソフトウェア ライセンスの下で配布されています。�
     <message>
         <location line="+59"/>
         <source>This transaction is over the size limit.  You can still send it for a fee of %1, which goes to the nodes that process your transaction and helps to support the network.  Do you want to pay the fee?</source>
-        <translation>この処理は大きさの制限を超えている。%1料金を払ったばい、通信可能性です。料金は手続きをするノードへ支払って、ネットワークのサッポートになります。料金を払いますか。</translation>
+        <translation>この処理はサイズ制限を超えています。%1料金を払った場合、通信可能性です。料金は手続きをするノードへ支払って、ネットワークのサポートになります。料金を払いますか。</translation>
     </message>
     <message>
         <location line="+5"/>
@@ -966,7 +966,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
  This means a fee of at least %2 is required. 
 
  Amounts below 0.546 times the minimum relay fee are shown as DUST.</source>
-        <translation>任意の受信者は%1より少ない額をもらったばい、このラベルは赤くなる。
+        <translation>任意の受信者は%1より少ない額をもらった場合、このラベルは赤くなる。
 
 少なくとも%2の料金は必要となります。
 
@@ -1180,7 +1180,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+7"/>
         <source>Connect to the SanDeGo network through a SOCKS proxy (e.g. when connecting through Tor).</source>
-        <translation>SanDeGoのネットワークへSOCKSプロキシで接続する（例：TORで接続するばい）</translation>
+        <translation>SanDeGoのネットワークへSOCKSプロキシで接続する（例：TORで接続する場合）</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -1587,7 +1587,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+7"/>
         <source>Open the SanDeGo debug log file from the current data directory. This can take a few seconds for large log files.</source>
-        <translation>現行のディレクトリからデバッグログファイルを開く。大きなファイルのばい、少し時間かかる。</translation>
+        <translation>現行のディレクトリからデバッグログファイルを開く。大きなファイルの場合、少し時間かかる。</translation>
     </message>
     <message>
         <location line="+102"/>
@@ -1991,7 +1991,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+21"/>
         <source>Sign the message to prove you own this SanDeGo address</source>
-        <translation>所有権の証明するためこのメサッジを署名する</translation>
+        <translation>このSanDeGoアドレスを所有していることを証明するためにこのメッセージに署名する</translation>
     </message>
     <message>
         <location line="+17"/>
@@ -2249,7 +2249,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+3"/>
         <source>Generated coins must mature 5 blocks before they can be spent. When you generated this block, it was broadcast to the network to be added to the block chain. If it fails to get into the chain, its state will change to &quot;not accepted&quot; and it won&apos;t be spendable. This may occasionally happen if another node generates a block within a few seconds of yours.</source>
-        <translation>コインを費やす前に発現されたコインは5ブロック間成熟しなければなりません。このブロックを発現させたときに、ブロックチェインに足すためにネットワークへ放送しました。ブロックチェインに追加失敗したばい、レベルは「受け入られていない」に変わって、費やせられない状況になります。自分のノードと他のノードと同時に新しいブロックを発現させたときに、時折に起こること。</translation>
+        <translation>コインを費やす前に発現されたコインは5ブロック間成熟しなければなりません。このブロックを発現させたときに、ブロックチェインに足すためにネットワークへ放送しました。ブロックチェインに追加失敗した場合、レベルは「受け入られていない」に変わって、費やせられない状況になります。自分のノードと他のノードと同時に新しいブロックを発現させたときに、時折に起こること。</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -2695,12 +2695,12 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+5"/>
         <source>Bind to given address. Use [host]:port notation for IPv6</source>
-        <translation>アドレスに結ぶ。IPv6のばい、[host]:port 表記法を使ってください。</translation>
+        <translation>指定されたアドレスにバインドする。IPv6の場合、[host]:port 表記法を使ってください。</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Stake your coins to support network and gain reward (default: 1)</source>
-        <translation>褒奨金をもらうためと、SanDeGoネットワークをサッポートするために、コインを賭ける(デファルト：1)</translation>
+        <translation>褒奨金をもらうためと、SanDeGoネットワークをサポートするために、コインを賭ける(デファルト：1)</translation>
     </message>
     <message>
         <location line="+5"/>
@@ -2800,7 +2800,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+61"/>
         <source>Warning: Please check that your computer&apos;s date and time are correct! If your clock is wrong SanDeGo will not work properly.</source>
-        <translation> 警告：コンピュータの日付と時間を調べてください。時間ずらしかったばい、SanDeGo QTは正しく行動しない。</translation>
+        <translation> 警告：あなたのコンピュータの日付と時刻が正しいことを確認してください！ 時間が間違っている場合、SanDeGoは正しく動作しません。</translation>
     </message>
     <message>
         <location line="-31"/>
@@ -2810,12 +2810,12 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="-18"/>
         <source>Warning: wallet.dat corrupt, data salvaged! Original wallet.dat saved as wallet.{timestamp}.bak in %s; if your balance or transactions are incorrect you should restore from a backup.</source>
-        <translation>警告: wallet.dat のデータはの汚染で、でデータを復旧しました！ オリジナルの wallet.dat は wallet.{timestamp}.bak として %s に保存されました; もしもあなたの残高や処理が正しくないばい、バックアップから復元してください。</translation>
+        <translation>警告: wallet.dat のデータはの汚染で、でデータを復旧しました！ オリジナルの wallet.dat は wallet.{timestamp}.bak として %s に保存されました; もしもあなたの残高や処理が正しくない場合、バックアップから復元してください。</translation>
     </message>
     <message>
         <location line="-30"/>
         <source>Attempt to recover private keys from a corrupt wallet.dat</source>
-        <translation>壊れた wallet.dat から秘密鍵を復旧することを試す</translation>
+        <translation>破損したwallet.datから秘密鍵を回復しようとしています</translation>
     </message>
     <message>
         <location line="+4"/>
@@ -3004,7 +3004,7 @@ rpcuser=sandegorpc
 rpcpassword=%s
 (このパサワードを覚えなくても大丈夫です)
 ユーザ名とパスワードは同じであってはなりません。
-ファイルは存在しないばいは、所有者が読み取り可能な専用のファイルを作成してください。
+ファイルは存在しない場合は、所有者が読み取り可能な専用のファイルを作成してください。
 問題のことを知らせるために、alertnotifyの設定を有効にしたほうがいいです。
 例：alertnotify=echo %%s | mail -s &quot;SanDeGo警告&quot; admin@foo.com
 </translation>
@@ -3012,12 +3012,12 @@ rpcpassword=%s
     <message>
         <location line="+51"/>
         <source>Find peers using internet relay chat (default: 0)</source>
-        <translation>インターネットリレーチャット(IRC)でピアアを探す。(デファルト:1 {0}?)</translation>
+        <translation>インターネットリレーチャット(IRC)を使用してピアを探す。(デファルト:1 {0}?)</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Sync time with other nodes. Disable if time on your system is precise e.g. syncing with NTP (default: 1)</source>
-        <translation>他のノードと時刻の同期する。確な時刻のコンピューターのばい、無効する。例：NTP同期設定有効ある(デファルト：1)</translation>
+        <translation>他のノードと時刻を同期します。システムの時間が正確な場合は無効します。例：NTP同期設定有効ある(デファルト：1)</translation>
     </message>
     <message>
         <location line="+15"/>
