@@ -44,6 +44,8 @@ sudo port install qrencode
 4.  Now you should be able to build sandegod:
 
 cd sandego/src
+export STATIC=1
+mkdir -p obj/zerocoin
 make -f makefile.osx
 
 Run:
