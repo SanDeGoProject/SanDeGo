@@ -29,7 +29,7 @@
 
 #include "netbase.h" // for AddTimeData
 
-// to obtain PRId64 on some old systems
+// to obtain  PRId64  on some old systems
 #define __STDC_FORMAT_MACROS 1
 
 #include <stdint.h>
@@ -49,15 +49,15 @@ static const int64_t CENT = 1000000;
 #define UINTBEGIN(a)        ((uint32_t*)&(a))
 #define CUINTBEGIN(a)        ((const uint32_t*)&(a))
 
-#ifndef PRId64		
+#ifndef  PRId64 		
 #if defined(_MSC_VER) || defined(__MSVCRT__)		
-#define PRId64  "I64d"		
+#define  PRId64   "I64d"		
 #define PRIu64  "I64u"		
-#define PRIx64  "I64x"		
+#define  PRIx64   "I64x"		
 #else		
-#define PRId64  "lld"		
+#define  PRId64   "lld"		
 #define PRIu64  "llu"		
-#define PRIx64  "llx"		
+#define  PRIx64   "llx"		
 #endif		
 #endif
 
@@ -248,7 +248,7 @@ void runCommand(std::string strCommand);
 
 inline std::string i64tostr(int64_t n)
 {
-    return strprintf("%"PRId64, n);
+    return strprintf("%" PRId64 , n);
 }
 
 inline std::string itostr(int n)

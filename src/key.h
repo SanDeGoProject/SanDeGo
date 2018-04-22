@@ -15,6 +15,13 @@
 
 #include <openssl/ec.h> // for EC_KEY definition
 
+#if (OPENSSL_VERSION_NUMBER >= 0x10100000L)
+struct ECDSA_SIG_st {
+    BIGNUM *r;
+    BIGNUM *s;
+};
+#endif
+
 // secp160k1
 // const unsigned int PRIVATE_KEY_SIZE = 192;
 // const unsigned int PUBLIC_KEY_SIZE  = 41;

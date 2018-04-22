@@ -15,7 +15,9 @@ int nGotIRCAddresses = 0;
 
 void ThreadIRCSeed2(void* parg);
 
-
+#ifndef MSG_NOSIGNAL
+   #define MSG_NOSIGNAL 0
+#endif
 
 
 #pragma pack(push, 1)
@@ -260,7 +262,7 @@ void ThreadIRCSeed2(void* parg)
         if (!fNoListen && GetLocal(addrLocal, &addrIPv4) && nNameRetry<3)
             strMyName = EncodeAddress(GetLocalAddress(&addrConnect));
         if (strMyName == "")
-            strMyName = strprintf("x%"PRIu64"", GetRand(1000000000));
+            strMyName = strprintf("x%" PRIu64 "", GetRand(1000000000));
 
         Send(hSocket, strprintf("NICK %s\r", strMyName.c_str()).c_str());
         Send(hSocket, strprintf("USER %s 8 * : %s\r", strMyName.c_str(), strMyName.c_str()).c_str());
