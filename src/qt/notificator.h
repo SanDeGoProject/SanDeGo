@@ -50,7 +50,7 @@ private:
         Freedesktop, /**< Use DBus org.freedesktop.Notifications */
         QSystemTray, /**< Use QSystemTray::showMessage */
         Growl12,        /**< Use the Growl 1.2 notification system (Mac only) */
-        Growl13        /**< Use the Growl 1.3 notification system (Mac only) */
+        Growl13,        /**< Use the Growl 1.3 notification system (Mac only) */
         UserNotificationCenter         /**< Use the Growl 1.3 notification system (Mac only) */
     };
     QString programName;
