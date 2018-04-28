@@ -675,8 +675,13 @@ void ThreadRPCServer(void* parg)
 }
 
 // Forward declaration required for RPCListen
+#if BOOST_VERSION < 106600
 template <typename Protocol, typename SocketAcceptorService>
 static void RPCAcceptHandler(boost::shared_ptr< basic_socket_acceptor<Protocol, SocketAcceptorService> > acceptor,
+#else
+template <typename Protocol>
+static void RPCAcceptHandler(boost::shared_ptr< basic_socket_acceptor<Protocol> > acceptor,
+#endif
                              ssl::context& context,
                              bool fUseSSL,
                              AcceptedConnection* conn,
@@ -685,8 +690,13 @@ static void RPCAcceptHandler(boost::shared_ptr< basic_socket_acceptor<Protocol, 
 /**
  * Sets up I/O resources to accept and handle a new connection.
  */
+#if BOOST_VERSION < 106600
 template <typename Protocol, typename SocketAcceptorService>
 static void RPCListen(boost::shared_ptr< basic_socket_acceptor<Protocol, SocketAcceptorService> > acceptor,
+#else
+template <typename Protocol>
+static void RPCListen(boost::shared_ptr< basic_socket_acceptor<Protocol> > acceptor,
+#endif
                    ssl::context& context,
                    const bool fUseSSL)
 {
@@ -696,7 +706,11 @@ static void RPCListen(boost::shared_ptr< basic_socket_acceptor<Protocol, SocketA
     acceptor->async_accept(
             conn->sslStream.lowest_layer(),
             conn->peer,
+#if BOOST_VERSION < 106600
             boost::bind(&RPCAcceptHandler<Protocol, SocketAcceptorService>,
+#else
+            boost::bind(&RPCAcceptHandler<Protocol>,
+#endif
                 acceptor,
                 boost::ref(context),
                 fUseSSL,
@@ -707,8 +721,13 @@ static void RPCListen(boost::shared_ptr< basic_socket_acceptor<Protocol, SocketA
 /**
  * Accept and handle incoming connection.
  */
+#if BOOST_VERSION < 106600
 template <typename Protocol, typename SocketAcceptorService>
 static void RPCAcceptHandler(boost::shared_ptr< basic_socket_acceptor<Protocol, SocketAcceptorService> > acceptor,
+#else
+template <typename Protocol>
+static void RPCAcceptHandler(boost::shared_ptr< basic_socket_acceptor<Protocol> > acceptor,
+#endif
                              ssl::context& context,
                              const bool fUseSSL,
                              AcceptedConnection* conn,
@@ -787,7 +806,11 @@ void ThreadRPCServer2(void* parg)
 
     asio::io_service io_service;
 
+#if BOOST_VERSION < 106600
     ssl::context context(io_service, ssl::context::sslv23);
+#else
+    ssl::context context(ssl::context::sslv23);
+#endif
     if (fUseSSL)
     {
         context.set_options(ssl::context::no_sslv2);
@@ -803,7 +826,11 @@ void ThreadRPCServer2(void* parg)
         else printf("ThreadRPCServer ERROR: missing server private key file %s\n", pathPKFile.string().c_str());
 
         string strCiphers = GetArg("-rpcsslciphers", "TLSv1+HIGH:!SSLv2:!aNULL:!eNULL:!AH:!3DES:@STRENGTH");
+#if BOOST_VERSION < 106600
         SSL_CTX_set_cipher_list(context.impl(), strCiphers.c_str());
+#else
+        SSL_CTX_set_cipher_list(context.native_handle(), strCiphers.c_str());
+#endif
     }
 
     // Try a dual IPv6/IPv4 socket, falling back to separate IPv4 and IPv6 sockets
@@ -1098,7 +1125,11 @@ Object CallRPC(const string& strMethod, const Array& params)
     // Connect to localhost
     bool fUseSSL = GetBoolArg("-rpcssl");
     asio::io_service io_service;
+#if BOOST_VERSION < 106600
     ssl::context context(io_service, ssl::context::sslv23);
+#else
+    ssl::context context(ssl::context::sslv23);
+#endif
     context.set_options(ssl::context::no_sslv2);
     asio::ssl::stream<asio::ip::tcp::socket> sslStream(io_service, context);
     SSLIOStreamDevice<asio::ip::tcp> d(sslStream, fUseSSL);
