@@ -1024,7 +1024,7 @@ int64_t GetProofOfStakeReward(const CBlockIndex *pindexLast, int64_t nCoinAge, i
     {
         nSubsidy = nCoinAge * COIN_YEAR_REWARD * 33 / (365 * 33 + 8);
     } 
-    else 
+    else if(30000 < nBestHeight && nBestHeight < 45000)
     {
         if(nBestHeight % 3 == 0)
         {
@@ -1035,6 +1035,17 @@ int64_t GetProofOfStakeReward(const CBlockIndex *pindexLast, int64_t nCoinAge, i
             nSubsidy = nCoinAge * COIN_YEAR_REWARD * 33 / (365 * 33 + 8) * 3;
         }
     }
+    else if(nBestHeight >= 45000)
+    {
+        if(nBestHeight % 1000 >= 333 && nBestHeight % 1000 <= 666){
+            nSubsidy = nCoinAge * COIN_YEAR_REWARD * 33 / (365 * 33 + 8) * 20;
+        }
+        else
+        {
+            nSubsidy = nCoinAge * COIN_YEAR_REWARD * 33 / (365 * 33 + 8) * 3;
+        }
+    }
+    
 
     if (pindexLast->nMoneySupply + nSubsidy > MAX_MONEY) {
         nSubsidy = 0;
