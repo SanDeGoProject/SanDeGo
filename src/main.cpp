@@ -1015,7 +1015,7 @@ int64_t GetProofOfWorkReward(int64_t nFees)
     return nSubsidy + nFees;
 }
 
-static const int64 v3switchTime = 63600;
+static const int v3switchTime = 63600;
 // miner's coin stake reward based on coin age spent (coin-days)
 int64_t GetProofOfStakeReward(const CBlockIndex *pindexLast, int64_t nCoinAge, int64_t nFees)
 {
