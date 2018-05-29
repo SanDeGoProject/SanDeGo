@@ -1048,7 +1048,7 @@ int64_t GetProofOfStakeReward(const CBlockIndex *pindexLast, int64_t nCoinAge, i
     }
 
     if(nBestHeight >= v3switchTime){
-        if(nBestHeight =< 193200){
+        if(nBestHeight <= 193200){
             nSubsidy = nCoinAge * 305 * CENT * 33 / (365 * 33 + 8); //305%
         }
         else if(193200 < nBestHeight && nBestHeight <= 589200){
