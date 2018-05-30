@@ -1015,6 +1015,7 @@ int64_t GetProofOfWorkReward(int64_t nFees)
     return nSubsidy + nFees;
 }
 
+static const int v3switchTime = 63600;
 // miner's coin stake reward based on coin age spent (coin-days)
 int64_t GetProofOfStakeReward(const CBlockIndex *pindexLast, int64_t nCoinAge, int64_t nFees)
 {
@@ -1043,6 +1044,27 @@ int64_t GetProofOfStakeReward(const CBlockIndex *pindexLast, int64_t nCoinAge, i
         else
         {
             nSubsidy = nCoinAge * COIN_YEAR_REWARD * 33 / (365 * 33 + 8) * 3;
+        }
+    }
+
+    if(nBestHeight >= v3switchTime){
+        if(nBestHeight <= 193200){
+            nSubsidy = nCoinAge * 305 * CENT * 33 / (365 * 33 + 8); //305%
+        }
+        else if(193200 < nBestHeight && nBestHeight <= 589200){
+            nSubsidy = nCoinAge * 135 * CENT * 33 / (365 * 33 + 8); // 135%
+        }
+        else if(589200 < nBestHeight && nBestHeight <= 639600){
+            nSubsidy = nCoinAge * 270 * CENT * 33 / (365 * 33 + 8); //270%
+        }
+        else if(639600 < nBestHeight && nBestHeight <= 1114800){
+            nSubsidy = nCoinAge * 100 * CENT * 33 / (365 * 33 + 8); // 100%
+        }
+        else if(1114800 < nBestHeight && nBestHeight <= 1640400){
+            nSubsidy = nCoinAge * 10 * CENT * 33 / (365 * 33 + 8); // 10%
+        }
+        else if(nBestHeight > 1640400){
+            nSubsidy = 350 * COIN;
         }
     }
     
