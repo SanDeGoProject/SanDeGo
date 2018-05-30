@@ -1,13 +1,13 @@
 TEMPLATE = app
 TARGET = sandego-qt
-VERSION = 1.0.7
+VERSION = 2.0.0
 INCLUDEPATH += src src/json src/qt
 DEFINES += QT_GUI BOOST_THREAD_USE_LIB BOOST_SPIRIT_THREADSAFE
 CONFIG += no_include_pwd
 CONFIG += thread
 
 greaterThan(QT_MAJOR_VERSION, 4) {
-    QT += widgets
+    QT += core widgets gui network
     DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0
 }
 
@@ -20,15 +20,37 @@ greaterThan(QT_MAJOR_VERSION, 4) {
 # Dependency library locations can be customized with:
 #    BOOST_INCLUDE_PATH, BOOST_LIB_PATH, BDB_INCLUDE_PATH,
 #    BDB_LIB_PATH, OPENSSL_INCLUDE_PATH and OPENSSL_LIB_PATH respectively
-
+macx {
+#
+        BOOST_INCLUDE_PATH=/usr/local/opt/boost@1.60/include
+        BOOST_LIB_PATH=/usr/local/opt/boost@1.60/lib
+        BDB_INCLUDE_PATH=/usr/local/opt/berkeley-db@4/include
+        BDB_LIB_PATH=/usr/local/opt/berkeley-db@4/lib
+        OPENSSL_INCLUDE_PATH=/usr/local/opt/openssl/include
+        OPENSSL_LIB_PATH=/usr/local/opt/openssl/lib
+        MINIUPNPC_INCLUDE_PATH=/usr/local/opt/miniupnpc/include
+        MINIUPNPC_LIB_PATH=/usr/local/opt/miniupnpc/lib
+        }
 OBJECTS_DIR = build
 MOC_DIR = build
 UI_DIR = build
 
+build_macosx64 {
+    QMAKE_TARGET_BUNDLE_PREFIX = co.lifestylecoin
+    BOOST_LIB_SUFFIX=-mt
+    DEFINES += IS_ARCH_64
+    QMAKE_CXXFLAGS += -arch x86_64 -stdlib=libc++
+    QMAKE_CFLAGS += -arch x86_64
+    QMAKE_LFLAGS += -arch x86_64 -stdlib=libc++
+}
+
 # use: qmake "RELEASE=1"
 contains(RELEASE, 1) {
     # Mac: compile for maximum compatibility (10.5, 32-bit)
-    macx:QMAKE_CXXFLAGS += -mmacosx-version-min=10.5 -arch x86_64 -isysroot /Developer/SDKs/MacOSX10.5.sdk
+    macx:QMAKE_CXXFLAGS += -mmacosx-version-min=10.7 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk
+    macx:QMAKE_CFLAGS += -mmacosx-version-min=10.7 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk
+    macx:QMAKE_LFLAGS += -mmacosx-version-min=10.7 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk
+    macx:QMAKE_OBJECTIVE_CFLAGS += -mmacosx-version-min=10.7 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk
 
     !windows:!macx {
         # Linux: static link
@@ -366,7 +388,7 @@ isEmpty(BOOST_THREAD_LIB_SUFFIX) {
 }
 
 isEmpty(BDB_LIB_PATH) {
-    macx:BDB_LIB_PATH = /opt/local/lib/db48
+    macx:BDB_LIB_PATH = /usr/local/lib/db48
 }
 
 isEmpty(BDB_LIB_SUFFIX) {
@@ -374,15 +396,15 @@ isEmpty(BDB_LIB_SUFFIX) {
 }
 
 isEmpty(BDB_INCLUDE_PATH) {
-    macx:BDB_INCLUDE_PATH = /opt/local/include/db48
+    macx:BDB_INCLUDE_PATH = /usr/local/include/db48
 }
 
 isEmpty(BOOST_LIB_PATH) {
-    macx:BOOST_LIB_PATH = /opt/local/lib
+    macx:BOOST_LIB_PATH = /usr/local/lib
 }
 
 isEmpty(BOOST_INCLUDE_PATH) {
-    macx:BOOST_INCLUDE_PATH = /opt/local/include
+    macx:BOOST_INCLUDE_PATH = /usr/local/include
 }
 
 windows:DEFINES += WIN32
@@ -399,8 +421,8 @@ windows:!contains(MINGW_THREAD_BUGFIX, 0) {
     QMAKE_LIBS_QT_ENTRY = -lmingwthrd $$QMAKE_LIBS_QT_ENTRY
 }
 
-macx:HEADERS += src/qt/macdockiconhandler.h
-macx:OBJECTIVE_SOURCES += src/qt/macdockiconhandler.mm
+macx:HEADERS += src/qt/macdockiconhandler.h src/qt/macnotificationhandler.h
+macx:OBJECTIVE_SOURCES += src/qt/macdockiconhandler.mm src/qt/macnotificationhandler.mm
 macx:LIBS += -framework Foundation -framework ApplicationServices -framework AppKit
 macx:DEFINES += MAC_OSX MSG_NOSIGNAL=0
 macx:ICON = src/qt/res/icons/bitcoin.icns

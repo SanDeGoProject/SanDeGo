@@ -18,7 +18,8 @@ Copyright © 2012-2014 The NovaCoin developers
 Copyright © 2014 The SanDeGo developers</source>
         <translation>コピーライト © 2009-2014 The Bitcoin developers
 コピーライト © 2012-2014 The NovaCoin developers
-コピーライト © 2014 The SanDeGo developers</translation>
+コピーライト © 2014 The BlackCoin developers
+コピーライト © 2018 The SanDeGo developers</translation>
     </message>
     <message>
         <location line="+15"/>
