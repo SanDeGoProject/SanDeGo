@@ -1190,7 +1190,7 @@ static unsigned int GetNextTargetRequiredV2(const CBlockIndex* pindexLast, bool 
 
 unsigned int GetNextTargetRequired(const CBlockIndex* pindexLast, bool fProofOfStake)
 {
-    if (pindexLast->nHeight < 100000)
+    if (!IsHardForkV4(pindexLast->nHeight + 1))
         return GetNextTargetRequiredV1(pindexLast, fProofOfStake);
     else
         return GetNextTargetRequiredV2(pindexLast, fProofOfStake);
@@ -2177,6 +2177,9 @@ bool CBlock::AcceptBlock()
         return DoS(10, error("AcceptBlock() : prev block not found"));
     CBlockIndex* pindexPrev = (*mi).second;
     int nHeight = pindexPrev->nHeight+1;
+
+    if (IsHardForkV4(nHeight) && nVersion < 7)
+        return DoS(100, error("AcceptBlock() : reject too old nVersion = %d", nVersion));
 
     if (IsProofOfWork() && nHeight > LAST_POW_BLOCK)
         return DoS(100, error("AcceptBlock() : reject proof-of-work at height %d", nHeight));
