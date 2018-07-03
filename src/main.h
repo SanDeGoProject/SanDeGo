@@ -60,6 +60,8 @@ static const uint256 hashGenesisBlockTestNet("");
 inline int64_t PastDrift(int64_t nTime)   { return nTime - 10 * 60; } // up to 10 minutes from the past
 inline int64_t FutureDrift(int64_t nTime) { return nTime + 10 * 60; } // up to 10 minutes from the future
 
+inline bool IsHardForkV4(int nHeight) { return nHeight > 96194; }
+
 extern libzerocoin::Params* ZCParams;
 extern CScript COINBASE_FLAGS;
 extern CCriticalSection cs_main;
@@ -822,7 +824,7 @@ class CBlock
 {
 public:
     // header
-    static const int CURRENT_VERSION=6;
+    static const int CURRENT_VERSION=7;
     int nVersion;
     uint256 hashPrevBlock;
     uint256 hashMerkleRoot;
