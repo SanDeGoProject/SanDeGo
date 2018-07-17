@@ -1190,7 +1190,7 @@ static unsigned int GetNextTargetRequiredV2(const CBlockIndex* pindexLast, bool 
 
 unsigned int GetNextTargetRequired(const CBlockIndex* pindexLast, bool fProofOfStake)
 {
-    if (!IsHardForkV4(pindexLast->nHeight + 1))
+    if (!IsHardForkV4(pindexLast->nHeight + 1) && !fTestNet)
         return GetNextTargetRequiredV1(pindexLast, fProofOfStake);
     else
         return GetNextTargetRequiredV2(pindexLast, fProofOfStake);
@@ -2609,7 +2609,7 @@ bool LoadBlockIndex(bool fAllowNew)
         block.nVersion = 1;
         block.nTime    = 1524023167;
         block.nBits    = bnProofOfWorkLimit.GetCompact();
-        block.nNonce   = !fTestNet ? 6798524 : 6798524;
+        block.nNonce   = !fTestNet ? 6798524 : 6896524;
         
         if (true  && (block.GetHash() != hashGenesisBlock)) {
 		printf("making new genesis block");
@@ -2637,6 +2637,7 @@ bool LoadBlockIndex(bool fAllowNew)
                 
         assert(block.hashMerkleRoot == uint256("0x314633ec233def31d92a686b3529a740f6a140703ee2390eafba27347d869640"));
         assert(block.GetHash() == (!fTestNet ? hashGenesisBlock : hashGenesisBlockTestNet));
+        // std::cout << block.GetHash();
         assert(block.CheckBlock());
 
         // Start new block file
