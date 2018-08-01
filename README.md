@@ -11,7 +11,7 @@
 ##### 305%(63600 ~ 193200 blocks) → 135%(193201 ~ 589200)
 ##### 270%(589201 ~ 639600) → 100%(639601 ~ 1114800)
 ##### 10% (1114801 ~ 1640400)
-##### Fixed to 350 SDGO(after the 164041 block)
+##### Fixed to 350 SDGO(after the 1640401 block)
 ##### Proof of Work :1000(until 1000blocks)
 ##### RPCPort :31933
 ##### Port :31932
