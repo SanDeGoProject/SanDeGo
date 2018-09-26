@@ -171,6 +171,7 @@ case "$TARGET_OS" in
         PLATFORM_SOURCES="util/env_win.cc"
         PLATFORM_LIBS="-lshlwapi"
         PORT_FILE=port/port_win.cc
+        PORT_SSE_FILE=port/port_posix_sse.cc
         CROSS_COMPILE=true
         ;;
     *)

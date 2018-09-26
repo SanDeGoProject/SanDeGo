@@ -139,7 +139,7 @@ $(SHARED_OUTDIR)/$(SHARED_LIB3): $(SHARED_LIBOBJECTS)
 
 endif  # PLATFORM_SHARED_EXT
 
-all: $(SHARED_LIBS) $(STATIC_OUTDIR)/libleveldb.a $(STATIC_OUTDIR)/libmemenv.a
+all: $(STATIC_OUTDIR)/libleveldb.a $(STATIC_OUTDIR)/libmemenv.a
 
 check: $(STATIC_PROGRAMS)
 	for t in $(notdir $(TESTS)); do echo "***** Running $$t"; $(STATIC_OUTDIR)/$$t || exit 1; done
