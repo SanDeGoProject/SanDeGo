@@ -3,6 +3,7 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include <boost/assign/list_of.hpp>
+#include <boost/compute/detail/lru_cache.hpp>
 
 #include "kernel.h"
 #include "txdb.h"
@@ -22,6 +23,8 @@ static std::map<int, unsigned int> mapStakeModifierCheckpointsTestNet =
     boost::assign::map_list_of
         ( 0, 0xfd11f4e7 )
     ;
+
+boost::compute::detail::lru_cache<uint256, uint256> hashBlockFromCache(100000);
 
 // Get time weight
 int64_t GetWeight(int64_t nIntervalBeginning, int64_t nIntervalEnd)
@@ -276,7 +279,16 @@ bool CheckStakeKernelHash(unsigned int nBits, const CBlock& blockFrom, unsigned 
     bnTargetPerCoinDay.SetCompact(nBits);
     int64_t nValueIn = txPrev.vout[prevout.n].nValue;
 
-    uint256 hashBlockFrom = blockFrom.GetHash();
+    uint256 prevTxHash = txPrev.GetHash();
+    uint256 hashBlockFrom;
+
+    boost::optional<uint256> blockHashCache = hashBlockFromCache.get(prevTxHash);
+    if (blockHashCache) {
+        hashBlockFrom = blockHashCache.value();
+    } else {
+        hashBlockFrom = blockFrom.GetHash();
+        hashBlockFromCache.insert(prevTxHash, hashBlockFrom);
+    }
 
     CBigNum bnCoinDayWeight = CBigNum(nValueIn) * GetWeight((int64_t)txPrev.nTime, (int64_t)nTimeTx) / COIN / (24 * 60 * 60);
     targetProofOfStake = (bnCoinDayWeight * bnTargetPerCoinDay).getuint256();
