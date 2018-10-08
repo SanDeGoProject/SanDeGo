@@ -10,7 +10,6 @@
 #include "net.h"
 #include "script.h"
 #include "scrypt.h"
-#include "zerocoin/Zerocoin.h"
 
 #include <list>
 
@@ -62,7 +61,6 @@ inline int64_t FutureDrift(int64_t nTime) { return nTime + 10 * 60; } // up to 1
 
 inline bool IsHardForkV4(int nHeight) { return nHeight > 96194; }
 
-extern libzerocoin::Params* ZCParams;
 extern CScript COINBASE_FLAGS;
 extern CCriticalSection cs_main;
 extern std::map<uint256, CBlockIndex*> mapBlockIndex;

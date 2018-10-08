@@ -94,17 +94,7 @@ OBJS= \
     obj/kernel.o \
     obj/scrypt.o \
     obj/scrypt-x86.o \
-    obj/scrypt-x86_64.o \
-    obj/zerocoin/Accumulator.o \
-    obj/zerocoin/AccumulatorProofOfKnowledge.o \
-    obj/zerocoin/Coin.o \
-    obj/zerocoin/CoinSpend.o \
-    obj/zerocoin/Commitment.o \
-    obj/zerocoin/ParamGeneration.o \
-    obj/zerocoin/Params.o \
-    obj/zerocoin/SerialNumberSignatureOfKnowledge.o \
-    obj/zerocoin/SpendMetaData.o \
-    obj/zerocoin/ZeroTest.o
+    obj/scrypt-x86_64.o
 
 ifndef USE_UPNP
 	override USE_UPNP = -
@@ -120,13 +110,13 @@ endif
 
 all: sandegod
 
-LIBS += $(CURDIR)/leveldb/libleveldb.a $(CURDIR)/leveldb/libmemenv.a
+LIBS += $(CURDIR)/leveldb/out-static/libleveldb.a $(CURDIR)/leveldb/out-static/libmemenv.a
 DEFS += $(addprefix -I,$(CURDIR)/leveldb/include)
 DEFS += $(addprefix -I,$(CURDIR)/leveldb/helpers)
 OBJS += obj/txdb-leveldb.o
-leveldb/libleveldb.a:
-	@echo "Building LevelDB ..."; cd leveldb; make libleveldb.a libmemenv.a; cd ..
-obj/txdb-leveldb.o: leveldb/libleveldb.a
+leveldb/out-static/libleveldb.a:
+	@echo "Building LevelDB ..."; cd leveldb; make; cd ..
+obj/txdb-leveldb.o: leveldb/out-static/libleveldb.a
 
 # auto-generated dependencies:
 -include obj/*.P
@@ -138,13 +128,6 @@ DEFS += -DHAVE_BUILD_INFO
 
 obj/%.o: %.cpp
 	$(CXX) -c $(CFLAGS) -MMD -MF $(@:%.o=%.d) -o $@ $<
-	@cp $(@:%.o=%.d) $(@:%.o=%.P); \
-	  sed -e 's/#.*//' -e 's/^[^:]*: *//' -e 's/ *\\$$//' \
-	      -e '/^$$/ d' -e 's/$$/ :/' < $(@:%.o=%.d) >> $(@:%.o=%.P); \
-	  rm -f $(@:%.o=%.d)
-
-obj/zerocoin/%.o: zerocoin/%.cpp
-	$(CXX) -c $(xCXXFLAGS) -MMD -MF $(@:%.o=%.d) -o $@ $<
 	@cp $(@:%.o=%.d) $(@:%.o=%.P); \
 	  sed -e 's/#.*//' -e 's/^[^:]*: *//' -e 's/ *\\$$//' \
 	      -e '/^$$/ d' -e 's/$$/ :/' < $(@:%.o=%.d) >> $(@:%.o=%.P); \
@@ -162,9 +145,7 @@ sandegod: $(OBJS:obj/%=obj/%)
 clean:
 	-rm -f sandegod
 	-rm -f obj/*.o
-	-rm -f obj/zerocoin/*.o
 	-rm -f obj/*.P
-	-rm -f obj/zerocoin/*.P
 	-rm -f obj/build.h
 
 FORCE:

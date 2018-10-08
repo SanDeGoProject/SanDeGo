@@ -543,12 +543,14 @@ void ThreadFlushWalletDB(void* parg)
     if (!GetBoolArg("-flushwallet", true))
         return;
 
+    int64_t nFlushWalletInterval = GetArg("-flushwalletinterval", 500);
+
     unsigned int nLastSeen = nWalletDBUpdated;
     unsigned int nLastFlushed = nWalletDBUpdated;
     int64_t nLastWalletUpdate = GetTime();
     while (!fShutdown)
     {
-        MilliSleep(500);
+        MilliSleep(nFlushWalletInterval);
 
         if (nLastSeen != nWalletDBUpdated)
         {

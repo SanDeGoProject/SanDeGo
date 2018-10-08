@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2012 The Bitcoin developers
+// Copyright (c) 2012-2018 The Bitcoin Core developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file license.txt or http://www.opensource.org/licenses/mit-license.php.
 
@@ -27,9 +27,16 @@ leveldb::DB *txdb; // global pointer for LevelDB object instance
 
 static leveldb::Options GetOptions() {
     leveldb::Options options;
-    int nCacheSizeMB = GetArg("-dbcache", 25);
-    options.block_cache = leveldb::NewLRUCache(nCacheSizeMB * 1048576);
+    size_t nCacheSize = GetArg("-dbcache", 300) * 1048576;
+    options.block_cache = leveldb::NewLRUCache(nCacheSize / 2);
+    options.write_buffer_size = nCacheSize / 4; // up to two write buffers may be held in memory simultaneously
     options.filter_policy = leveldb::NewBloomFilterPolicy(10);
+    options.compression = leveldb::kNoCompression;
+    if (leveldb::kMajorVersion > 1 || (leveldb::kMajorVersion == 1 && leveldb::kMinorVersion >= 16)) {
+        // LevelDB versions before 1.16 consider short writes to be corruption. Only trigger error
+        // on corruption in later versions.
+        options.paranoid_checks = true;
+    }
     return options;
 }
 
