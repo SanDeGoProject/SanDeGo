@@ -16,6 +16,10 @@
 ##### RPCPort :31933
 ##### Port :31932
 
+## Building SanDeGo core
+Boost > 1.61.0 is needed to build over v4.01  
+[unix build](https://github.com/SanDeGoProject/SanDeGo/blob/master/doc/build-unix.txt)
+
 ## Links
 - **[Website](http://www.sandego.net)**
 - **[Discord](https://discord.gg/TArGVTq)**
