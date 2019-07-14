@@ -15,6 +15,11 @@ src/build.h
 *.qm
 Makefile
 sandego-qt
+/.qmake.stash
+/*.Debug
+/*.Release
+/release
+/sandego-qt_plugin_import.cpp
 #resources cpp
 qrc_*.cpp
 #qt creator
