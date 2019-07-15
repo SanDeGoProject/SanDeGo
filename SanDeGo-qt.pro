@@ -1,7 +1,7 @@
 TEMPLATE = app
 TARGET = sandego-qt
 INCLUDEPATH += src src/json src/qt
-VERSION = 4.0.1
+VERSION = 4.0.2
 DEFINES += QT_GUI BOOST_THREAD_USE_LIB BOOST_SPIRIT_THREADSAFE
 CONFIG += no_include_pwd
 CONFIG += thread
