@@ -32,3 +32,5 @@ build
 /dist
 
 !src/leveldb/Makefile
+!depends/Makefile
+!depends/patches/*/*.patch
