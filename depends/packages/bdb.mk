@@ -4,6 +4,7 @@ $(package)_download_path=http://download.oracle.com/berkeley-db
 $(package)_file_name=db-$($(package)_version).NC.tar.gz
 $(package)_sha256_hash=76a25560d9e52a198d37a31440fd07632b5f1f8f9f2b6d5438f4bc3e7c9013ef
 $(package)_build_subdir=build_unix
+$(package)_patches=clang.patch
 
 define $(package)_set_vars
 $(package)_config_opts=--disable-shared --enable-cxx --disable-replication
@@ -13,6 +14,7 @@ $(package)_cxxflags=-std=c++11
 endef
 
 define $(package)_preprocess_cmds
+  patch -p1 -i $($(package)_patch_dir)/clang.patch && \
   cp -f $(BASEDIR)/config.guess $(BASEDIR)/config.sub dist
 endef
 
