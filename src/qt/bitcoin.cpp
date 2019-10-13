@@ -198,7 +198,16 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    QSplashScreen splash(QPixmap(":/images/splash"), 0);
+    std::string strYmd = DateTimeStrFormat("%Y%m%d", GetTime());
+    int nSanDeGoPos = strYmd.find("3");
+    fSanDeGo = (nSanDeGoPos != std::string::npos);
+
+    QPixmap splashPixmap;
+    if (fSanDeGo)
+        splashPixmap.load(":/images/splash3");
+    else
+        splashPixmap.load(":/images/splash");
+    QSplashScreen splash(splashPixmap, 0);
     if (GetBoolArg("-splash", true) && !GetBoolArg("-min"))
     {
         splash.show();
