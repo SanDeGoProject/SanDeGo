@@ -1,8 +1,9 @@
 #!/bin/bash
 
-DEPENDS=depends/x86_64-linux-gnu
+SCRIPT_DIR=$(cd $(dirname $0); pwd)
+DEPENDS=$SCRIPT_DIR/depends/x86_64-pc-linux-gnu
 
-make -C depends HOST=x86_64-linux-gnu -j$(nproc) && \
+make -C depends HOST=x86_64-pc-linux-gnu -j$(nproc) && \
     $DEPENDS/native/bin/qmake \
     USE_BUILD_INFO=1 \
     BOOST_LIB_SUFFIX=-mt \
