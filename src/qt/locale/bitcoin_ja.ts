@@ -2646,7 +2646,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+2"/>
         <source>Specify configuration file (default: sandego.conf)</source>
-        <translation>設定ファイルを特定する (デファルト: sandego.conf)</translation>
+        <translation>設定ファイルを特定する (デフォルト: sandego.conf)</translation>
     </message>
     <message>
         <location line="+1"/>
